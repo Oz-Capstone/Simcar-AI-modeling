@@ -6,6 +6,7 @@ import numpy as np
 from typing import Optional
 from pathlib import Path
 import os
+import uvicorn
 
 app = FastAPI()
 
@@ -88,6 +89,9 @@ async def root():
 
 
 if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(
+        "server.main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=False,  # reload 기능 비활성화
+    )
